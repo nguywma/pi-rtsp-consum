@@ -1,9 +1,14 @@
 import pika
 import subprocess
 import time
+import datetime
 # Define the function to execute a command
+current_timestamp = datetime.now()
+
+formatted_timestamp = current_timestamp.strftime('%Y-%m-%d %H:%M:%S')
 def execute_command(command):
     subprocess.call(command, shell=True)
+
 
 # Define the callback function to process messages
 def callback(ch, method, properties, body):
@@ -12,6 +17,7 @@ def callback(ch, method, properties, body):
     if "Male" in message:
         # Execute the command if the substring is found
         execute_command("ls")
+        printf(formatted_timestamp)
     time.sleep(30)
 
 # Establish connection with RabbitMQ server
