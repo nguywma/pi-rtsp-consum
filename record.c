@@ -6,13 +6,13 @@
 
 #define HOSTNAME "localhost"
 #define PORT 5672
-#define QUEUE_NAME "my_queue"
+#define QUEUE_NAME "message"
 
 void executeCommand(const char *message) {
     // Example condition: execute command if message contains "execute"
     if (strstr(message, "execute") != NULL) {
         // Replace the command with your desired command
-        system("your_command_here");
+        system("ffmpeg -rtsp_transport tcp -i rtsp://admin:ivsr2019@192.168.0.103 -t 10 -c copy output.mp4 ");
     }
 }
 
