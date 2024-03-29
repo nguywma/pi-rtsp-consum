@@ -1,6 +1,6 @@
 import pika
 import subprocess
-
+import time
 # Define the function to execute a command
 def execute_command(command):
     subprocess.call(command, shell=True)
@@ -9,9 +9,10 @@ def execute_command(command):
 def callback(ch, method, properties, body):
     message = body.decode('utf-8')
     # Check if the message contains a specific substring
-    if "Person" in message:
+    if "Male" in message:
         # Execute the command if the substring is found
         execute_command("ls")
+    time.sleep(30)
 
 # Establish connection with RabbitMQ server
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
