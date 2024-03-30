@@ -23,7 +23,13 @@ def callback(ch, method, properties, body):
         a = message_dict['@timestamp']
         element = datetime.strptime(a,"%Y-%m-%dT%H:%M:%S.%fZ")
         print(current_timestamp - element)
-        execute_command("ls")
+        execute_command("ffmpeg -rtsp_transport tcp -i rtsp://admin:ivsr2019@192.168.0.103 -t 10 -c copy output.mp4")
+        after_exec = datetime.now()
+        after_exec_formatted = after_exec.strftime('%Y-%m-%d %H:%M:%S.%f')
+        print(after_exec_formatted)
+
+
+        
     #time.sleep(2)
 
 # Establish connection with RabbitMQ server
